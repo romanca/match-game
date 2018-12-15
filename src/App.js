@@ -1,25 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import ChooseName from "./components/ChooseName";
+import ChoosePexeso from "./components/ChoosePexeso";
+import Game from "./components/Game";
+import Result from "./components/Result";
 
 class App extends Component {
+  state = {
+    pageSelected: "menu",
+    player1: {
+      name: undefined,
+      score: 0
+    },
+    player2: {
+      name: undefined,
+      score: 0
+    },
+    resultMessage: ""
+  };
+
+  handleChange = event => {
+    if (event.target.id === "1") {
+      this.setState({
+        player1: {
+          name: event.target.value
+        }
+      });
+    } else {
+      this.setState({
+        player2: {
+          name: event.target.value
+        }
+      });
+    }
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="App container-fluid">
+        <ChooseName onPlayerNameChange={this.handleChange} />
+        <ChoosePexeso />
+        <Game />
+        <Result />
       </div>
     );
   }
