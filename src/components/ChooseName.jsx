@@ -5,18 +5,20 @@ class ChooseName extends Component {
 
   render() {
     return (
-      <div className="menu text-center">
+      <div className="container-fluid text-center">
         <h1>Choose your name</h1>
         <hr />
         <h2>Player 1:</h2>
         <br />
-        <input id="1" onChange={this.props.onPlayerNameChange} type="text" />
+        <input id="1" onChange={this.props.onChange} type="text" />
         <h2>Player 2:</h2>
         <br />
-        <input id="2" onChange={this.props.onPlayerNameChange} type="text" />
+        <input id="2" onChange={this.props.onChange} type="text" />
         <br />
         <br />
-        <button className="btn btn-lg btn-danger">Next Screen</button>
+        <button onClick={this.props.onClick} className="btn btn-lg btn-danger">
+          Next Screen
+        </button>
       </div>
     );
   }

@@ -7,7 +7,7 @@ import Result from "./components/Result";
 
 class App extends Component {
   state = {
-    pageSelected: "menu",
+    pageSelected: "ChooseName",
     player1: {
       name: undefined,
       score: 0
@@ -35,15 +35,29 @@ class App extends Component {
     }
   };
 
+  selectPage = page => {
+    this.setState({ pageSelected: page });
+  };
+
   render() {
-    return (
-      <div className="App container-fluid">
-        <ChooseName onPlayerNameChange={this.handleChange} />
-        <ChoosePexeso />
-        <Game />
-        <Result />
-      </div>
-    );
+    const { pageSelected } = this.state;
+    if (pageSelected === "ChooseName") {
+      return (
+        <ChooseName
+          onChange={this.handleChange}
+          onClick={() => this.selectPage("ChoosePexeso")}
+        />
+      );
+    }
+    if (pageSelected === "ChoosePexeso") {
+      return <ChoosePexeso onClick={() => this.selectPage("Game")} />;
+    }
+    if (pageSelected === "Game") {
+      return <Game />;
+    }
+    if (pageSelected === "Result") {
+      return <Result />;
+    }
   }
 }
 

@@ -1,32 +1,109 @@
-.App {
-  text-align: center;
+.card-img-sm {
+  width: 90px;
+  height: 90px;
+}
+.card-img-lg {
+  width: 130px;
+  height: 130px;
+}
+.pexeso-main {
+  width: 300px;
+  height: 300px;
+}
+.pexeso-show {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.each-pexeso {
+  padding: 20px;
+  border-radius: 20px;
+}
+.each-pexeso:hover {
+  background-color: rgb(192, 192, 192);
+  cursor: pointer;
+}
+.pexeso-active {
+  background-color: rgb(192, 192, 192);
+}
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 10px;
+  padding: 10px;
+}
+.card {
+  border: none;
+}
+.active {
+  color: rgb(124, 12, 12);
+  font-weight: bold;
+}
+.passive {
+  color: black;
+  font-weight: normal;
+}
+h3 {
+  display: inline;
+  padding: 0px 20px 0px 20px;
+}
+h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+input {
+  padding-left: 3px;
+}
+.margin-top-60 {
+  margin-top: 60px;
+}
+.pexeso-header {
+  display: block;
+  margin-bottom: 0px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 1000px) {
+  .pexeso-show {
+    grid-template-columns: 1fr 1fr;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media (max-width: 800px) {
+  .game-board {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .pexeso-show {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .game-board {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .card-img-lg {
+    width: 70px;
+    height: 70px;
+  }
+  .card-img-sm {
+    width: 70px;
+    height: 70px;
+  }
+}
+@media (max-width: 350px) {
+  .card-img-lg {
+    width: 60px;
+    height: 60px;
+  }
+  .card-img-sm {
+    width: 60px;
+    height: 60px;
+  }
+  .pexeso-main {
+    width: 280px;
+    height: 280px;
   }
 }
