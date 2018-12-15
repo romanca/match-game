@@ -27,6 +27,8 @@ class ChoosePexeso extends Component {
     if (this.props.pageSelected === "Game") {
       return (
         <Game
+          player1={this.props.player1}
+          player2={this.props.player2}
           pexesoDecks={this.state.pexesoDecks}
           activeDeck={this.state.activeDeck}
         />

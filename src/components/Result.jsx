@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 class Result extends Component {
-  state = {};
+  state = {
+    resultMessage: ""
+  };
   render() {
     return <p>Result</p>;
   }

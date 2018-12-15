@@ -7,28 +7,23 @@ import Result from "./components/Result";
 class App extends Component {
   state = {
     pageSelected: "ChooseName",
-    player1: {
-      name: undefined,
-      score: 0
-    },
-    player2: {
-      name: undefined,
-      score: 0
-    },
-    resultMessage: ""
+    player1: {},
+    player2: {}
   };
 
   handleChange = event => {
     if (event.target.id === "1") {
       this.setState({
         player1: {
-          name: event.target.value
+          name: event.target.value,
+          score: 0
         }
       });
     } else {
       this.setState({
         player2: {
-          name: event.target.value
+          name: event.target.value,
+          score: 0
         }
       });
     }
@@ -51,6 +46,8 @@ class App extends Component {
     if (pageSelected === "ChoosePexeso" || pageSelected === "Game") {
       return (
         <ChoosePexeso
+          player1={this.state.player1}
+          player2={this.state.player2}
           pageSelected={this.state.pageSelected}
           onClick={() => this.selectPage("Game")}
         />
