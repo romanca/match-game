@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import ChooseName from "./components/ChooseName";
 import ChoosePexeso from "./components/ChoosePexeso";
-import Game from "./components/Game";
 import Result from "./components/Result";
 
 class App extends Component {
@@ -49,11 +48,13 @@ class App extends Component {
         />
       );
     }
-    if (pageSelected === "ChoosePexeso") {
-      return <ChoosePexeso onClick={() => this.selectPage("Game")} />;
-    }
-    if (pageSelected === "Game") {
-      return <Game />;
+    if (pageSelected === "ChoosePexeso" || pageSelected === "Game") {
+      return (
+        <ChoosePexeso
+          pageSelected={this.state.pageSelected}
+          onClick={() => this.selectPage("Game")}
+        />
+      );
     }
     if (pageSelected === "Result") {
       return <Result />;

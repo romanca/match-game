@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import pexesoDecks from "../pexeso";
+import Game from "./Game";
 
 class ChoosePexeso extends Component {
   state = {
@@ -23,7 +24,14 @@ class ChoosePexeso extends Component {
   }
 
   render() {
-    console.log("active deck:", this.state.activeDeck);
+    if (this.props.pageSelected === "Game") {
+      return (
+        <Game
+          pexesoDecks={this.state.pexesoDecks}
+          activeDeck={this.state.activeDeck}
+        />
+      );
+    }
     return (
       <div className="container-fluid text-center">
         <h1>Select Pexeso</h1>
