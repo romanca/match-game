@@ -13,17 +13,19 @@ class Pexeso {
   }
 
   createCards() {
-    for (let i = 1; i <= this.numberOfCards / 2; i++) {
+    for (let i = 0; i < this.numberOfCards; i++) {
       this.cards.push({
-        cardName: i
+        id: i,
+        cardName: i + 1
       });
     }
   }
 
-  makePairs() {
-    const copyOfDeck = this.cards.slice(0);
-    copyOfDeck.forEach(card => {
-      this.cards.push(card);
+  createCardName() {
+    this.cards.forEach(card => {
+      if (card.cardName > this.numberOfCards / 2) {
+        card.cardName -= this.numberOfCards / 2;
+      }
     });
   }
 
@@ -45,7 +47,7 @@ const pexesoDecks = [harryPotterPexeso, lordOfTheRings, strangerThings];
 function initiatePexeso(pexesoDeck) {
   pexesoDeck.forEach(pexeso => {
     pexeso.createCards();
-    pexeso.makePairs();
+    pexeso.createCardName();
     pexeso.shuffleDeck();
   });
 }
