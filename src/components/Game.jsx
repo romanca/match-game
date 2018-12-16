@@ -36,8 +36,8 @@ class Game extends Component {
 
   imgClassToggler() {
     if (this.props.activeDeck.numberOfCards <= 40)
-      return "img-fluid card-img-lg";
-    return "img-fluid card-img-sm";
+      return "card img-fluid card-img-lg";
+    return "card img-fluid card-img-sm";
   }
 
   onImgClick = id => {
@@ -60,7 +60,7 @@ class Game extends Component {
         return;
       }
     }
-    if (this.state.card1 !== undefined) this.evaluate();
+    if (this.state.card1 !== undefined) return this.evaluate();
   }
 
   evaluate() {
@@ -108,7 +108,6 @@ class Game extends Component {
   }
 
   render() {
-    console.log("card1:", this.state.card1, "card2", this.state.card2);
     const { player1, player2 } = this.props;
     return (
       <div>
@@ -121,7 +120,7 @@ class Game extends Component {
         </div>
         <div className="game-board">
           {this.props.activeDeck.cards.map(card => (
-            <div className="card" key={card.id}>
+            <div key={card.id}>
               <img
                 onClick={() => this.onImgClick(card.id)}
                 className={this.imgClassToggler()}
