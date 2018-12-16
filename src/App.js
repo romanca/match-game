@@ -52,7 +52,9 @@ class App extends Component {
       );
     }
     if (pageSelected === "Result") {
-      return <Result />;
+      return (
+        <Result player1={this.state.player1} player2={this.state.player2} />
+      );
     }
   }
 }

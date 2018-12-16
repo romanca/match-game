@@ -1,11 +1,3 @@
-.card-img-sm {
-  width: 90px;
-  height: 90px;
-}
-.card-img-lg {
-  width: 130px;
-  height: 130px;
-}
 .pexeso-main {
   width: 300px;
   height: 300px;
@@ -25,15 +17,7 @@
 .pexeso-active {
   background-color: rgb(192, 192, 192);
 }
-.game-board {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-gap: 10px;
-  padding: 10px;
-}
-.card {
-  border: 0px;
-}
+
 .active {
   color: rgb(124, 12, 12);
   font-weight: bold;
@@ -70,38 +54,12 @@ input {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (max-width: 800px) {
-  .game-board {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
 @media (max-width: 700px) {
   .pexeso-show {
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 600px) {
-  .game-board {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .card-img-lg {
-    width: 70px;
-    height: 70px;
-  }
-  .card-img-sm {
-    width: 70px;
-    height: 70px;
-  }
-}
 @media (max-width: 350px) {
-  .card-img-lg {
-    width: 60px;
-    height: 60px;
-  }
-  .card-img-sm {
-    width: 60px;
-    height: 60px;
-  }
   .pexeso-main {
     width: 280px;
     height: 280px;
