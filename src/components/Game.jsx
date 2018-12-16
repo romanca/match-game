@@ -3,6 +3,7 @@ import React, { Component } from "react";
 class Game extends Component {
   state = {
     isPlayer1Active: true,
+    wasPlayerSuccessful: false,
     card1: undefined,
     card2: undefined,
     loading: false,
@@ -49,20 +50,64 @@ class Game extends Component {
   };
 
   flipCard(id) {
-    const { card1, card2 } = this.state;
     if (this.state.loading) return;
-    if (card1 === undefined) {
+    if (this.state.card1 === undefined) {
       this.setState({ card1: id });
     } else {
       this.setState({ card2: id });
-      if (card2 === card1) {
+      if (this.state.card1 === this.state.card2) {
         return;
       }
     }
-    console.log(this.state.card1, this.state.card2);
+    if (this.state.card1 !== undefined) this.evaluate();
+  }
+
+  evaluate() {
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.countScore();
+      this.reset();
+    }, 1500);
+  }
+
+  countScore() {
+    this.setState({ wasPlayerSuccessful: false });
+    if (
+      this.props.activeDeck.cards[this.state.card1].cardName ===
+      this.props.activeDeck.cards[this.state.card2].cardName
+    ) {
+      if (this.state.isPlayer1Active) {
+        this.props.player1.score += 1;
+        this.setState({ wasPlayerSuccessful: true });
+      } else {
+        this.props.player2.score += 1;
+        this.setState({ wasPlayerSuccessful: true });
+      }
+      this.state.discardedCards.push(this.state.card1);
+      this.state.discardedCards.push(this.state.card2);
+      if (
+        this.state.discardedCards.length === this.props.activeDeck.cards.length
+      ) {
+        //return this.selectPage('result');
+      }
+    }
+  }
+
+  switchPlayers() {
+    this.setState({ isPlayer1Active: !this.state.isPlayer1Active });
+  }
+
+  reset() {
+    this.setState({ card1: undefined });
+    this.setState({ card2: undefined });
+    this.setState({ loading: false });
+    if (!this.state.wasPlayerSuccessful) {
+      this.switchPlayers();
+    }
   }
 
   render() {
+    console.log("card1:", this.state.card1, "card2", this.state.card2);
     const { player1, player2 } = this.props;
     return (
       <div>
