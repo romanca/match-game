@@ -16,7 +16,10 @@ class ChooseName extends Component {
         <input id="2" onChange={this.props.onChange} type="text" />
         <br />
         <br />
-        <button onClick={this.props.onClick} className="btn btn-lg btn-danger">
+        <button
+          onClick={() => this.props.onClick("ChoosePexeso")}
+          className="btn btn-lg btn-danger"
+        >
           Next Screen
         </button>
       </div>

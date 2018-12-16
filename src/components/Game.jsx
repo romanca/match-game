@@ -88,7 +88,7 @@ class Game extends Component {
       if (
         this.state.discardedCards.length === this.props.activeDeck.cards.length
       ) {
-        //return this.selectPage('result');
+        return this.props.onClick("Result");
       }
     }
   }

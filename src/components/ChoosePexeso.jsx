@@ -27,6 +27,7 @@ class ChoosePexeso extends Component {
     if (this.props.pageSelected === "Game") {
       return (
         <Game
+          onClick={this.props.selectPage}
           player1={this.props.player1}
           player2={this.props.player2}
           pexesoDecks={this.state.pexesoDecks}
@@ -56,7 +57,7 @@ class ChoosePexeso extends Component {
         </div>
         <div>
           <button
-            onClick={this.props.onClick}
+            onClick={() => this.props.onClick("Game")}
             className="btn btn-lg btn-danger margin-top-60"
           >
             Start Game

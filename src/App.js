@@ -37,19 +37,17 @@ class App extends Component {
     const { pageSelected } = this.state;
     if (pageSelected === "ChooseName") {
       return (
-        <ChooseName
-          onChange={this.handleChange}
-          onClick={() => this.selectPage("ChoosePexeso")}
-        />
+        <ChooseName onChange={this.handleChange} onClick={this.selectPage} />
       );
     }
     if (pageSelected === "ChoosePexeso" || pageSelected === "Game") {
       return (
         <ChoosePexeso
+          selectPage={this.selectPage}
           player1={this.state.player1}
           player2={this.state.player2}
           pageSelected={this.state.pageSelected}
-          onClick={() => this.selectPage("Game")}
+          onClick={this.selectPage}
         />
       );
     }
