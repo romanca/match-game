@@ -17,7 +17,7 @@ class Result extends Component {
   render() {
     return (
       <div className="text-center">
-        <h1>Result</h1>
+        <h1 className="h1">Result</h1>
         <hr />
         <h4>{this.resultMessage()}</h4>
 

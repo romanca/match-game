@@ -37,7 +37,7 @@ class ChoosePexeso extends Component {
     }
     return (
       <div className="container-fluid text-center">
-        <h1>Select Pexeso</h1>
+        <h1 className="h1">Select Pexeso</h1>
         <hr />
         <div className="pexeso-show">
           {this.state.pexesoDecks.map(pexeso => (
