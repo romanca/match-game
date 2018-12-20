@@ -9,9 +9,7 @@ class ChoosePexeso extends Component {
   };
 
   getPexesoImage(i) {
-    return require("../assets/img/" +
-      this.state.pexesoDecks[i].pathName +
-      "/main.png");
+    return "assets/img/" + this.state.pexesoDecks[i].pathName + "/main.png";
   }
 
   selectPexeso = i => {

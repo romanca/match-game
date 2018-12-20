@@ -24,14 +24,15 @@ class Game extends Component {
   imgSrc(id) {
     const { card1, card2, discardedCards } = this.state;
     if (card1 === id || card2 === id) {
-      return require("../assets/img/" +
+      return (
+        "assets/img/" +
         this.props.activeDeck.pathName +
         "/" +
         this.props.activeDeck.cards[id].cardName +
-        ".png");
-    } else if (discardedCards.includes(id))
-      return require("../assets/img/end.png");
-    else return require("../assets/img/back.png");
+        ".png"
+      );
+    } else if (discardedCards.includes(id)) return "assets/img/end.png";
+    else return "assets/img/back.png";
   }
 
   imgClassToggler() {
@@ -99,9 +100,7 @@ class Game extends Component {
   }
 
   reset() {
-    this.setState({ card1: undefined });
-    this.setState({ card2: undefined });
-    this.setState({ loading: false });
+    this.setState({ card1: undefined, card2: undefined, loading: false });
     if (!this.state.wasPlayerSuccessful) {
       this.switchPlayers();
     }
