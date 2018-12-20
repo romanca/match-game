@@ -1,7 +1,6 @@
 /* img folder by měla obsahovat složku s názvem pexesa (= pathName). Složka musí obsahovat obrázky ve formátu .png
 číslované od 1 do (numberOfCards / 2), tudíž každou kartu jen jednou. Dále by měla obsahovat titulní obrázek
-s názvem main.png. Obrázky by měly být přibližně ve tvaru čtverce, na velikosti ale nezáleží. 
-Počet karet není dán, je možné jakékoliv sudé číslo. */
+s názvem main.png. */
 
 class Pexeso {
   constructor(name, pathName, numberOfCards, id) {
@@ -52,6 +51,6 @@ function initiatePexeso(pexesoDeck) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", initiatePexeso(pexesoDecks));
+initiatePexeso(pexesoDecks);
 
 export default pexesoDecks;
