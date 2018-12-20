@@ -85,8 +85,7 @@ class Game extends Component {
         this.props.player2.score += 1;
         this.setState({ wasPlayerSuccessful: true });
       }
-      this.state.discardedCards.push(this.state.card1);
-      this.state.discardedCards.push(this.state.card2);
+      this.state.discardedCards.push(this.state.card1, this.state.card2);
       if (
         this.state.discardedCards.length === this.props.activeDeck.cards.length
       ) {
