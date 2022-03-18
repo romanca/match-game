@@ -1,72 +1,75 @@
-.pexeso-main {
-  width: 300px;
-  height: 300px;
+.app_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.pexeso-show {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-.each-pexeso {
-  padding: 20px;
-  border-radius: 20px;
-}
-.each-pexeso:hover {
-  background-color: rgb(192, 192, 192);
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  flex: 1 0 12%;
+  margin: 1px;
+  height: 120px;
+  overflow: hidden;
+  float: left;
   cursor: pointer;
 }
-.pexeso-active {
-  background-color: rgb(192, 192, 192);
-}
-.btn {
-  margin-top: 15px;
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
 }
 
-.active {
-  color: rgb(124, 12, 12);
-  font-weight: bold;
-}
-.passive {
-  color: black;
-  font-weight: normal;
-}
-h3 {
-  display: inline;
-  padding: 0px 20px 0px 20px;
-}
-.h2 {
-  margin-top: 30px;
-  margin-bottom: 15px;
-}
-.h1 {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.input {
-  padding-left: 3px;
-  border-radius: 3px;
-  border: 1px solid rgb(172, 172, 172);
-}
-.margin-top-60 {
-  margin-top: 60px;
-}
-.pexeso-header {
-  display: block;
-  margin-bottom: 0px;
+.card.flipped .content {
+  transform: rotateY(180deg);
+  transition: transform 0.5s;
 }
 
-@media (max-width: 1000px) {
-  .pexeso-show {
-    grid-template-columns: 1fr 1fr;
-  }
+.front {
+  background-image: url("./assets/frontImage.jpeg");
 }
-@media (max-width: 700px) {
-  .pexeso-show {
-    grid-template-columns: 1fr;
-  }
+
+.front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 60px;
+  backface-visibility: hidden;
 }
-@media (max-width: 350px) {
-  .pexeso-main {
-    width: 280px;
-    height: 280px;
-  }
+
+.back {
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.back img {
+  width: 100%;
+  height: 100%;
+}
+
+.card_container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 15px 0px 15px;
+}
+
+.sidebar_container {
+  height: 100vh;
+  width: 30%;
+  border-left: 1px solid black;
 }

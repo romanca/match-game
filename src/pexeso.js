@@ -1,56 +1,108 @@
-/* img folder by měla obsahovat složku s názvem pexesa (= pathName). Složka musí obsahovat obrázky ve formátu .png
-číslované od 1 do (numberOfCards / 2), tudíž každou kartu jen jednou. Dále by měla obsahovat titulní obrázek
-s názvem main.png. */
+import React from "react";
+import Images from "./Images";
+import "./App.css";
 
-class Pexeso {
-  constructor(name, pathName, numberOfCards, id) {
-    this.name = name;
-    this.pathName = pathName;
-    this.numberOfCards = numberOfCards;
-    this.id = id;
-    this.cards = [];
-  }
+const Pexeso = () => {
+  const [cards, setCards] = React.useState([...Images, ...Images]);
+  const [clicks, setClicks] = React.useState(0);
+  const [playing, setPlaying] = React.useState(false);
+  const [activeCards, setActiveCards] = React.useState([]);
+  const [foundPairs, setFoundPairs] = React.useState([]);
 
-  createCards() {
-    for (let i = 0; i < this.numberOfCards; i++) {
-      this.cards.push({
-        id: i,
-        cardName: i + 1
-      });
+  function setPlayingGame() {
+    if (playing) {
+      setFoundPairs([]);
+      setPlaying(false);
+      setClicks(0);
     }
   }
 
-  createCardName() {
-    this.cards.forEach(card => {
-      if (card.cardName > this.numberOfCards / 2) {
-        card.cardName -= this.numberOfCards / 2;
+  function handleClicks() {
+    setClicks(clicks + 1);
+  }
+
+  function closeUnmatchedPairs(a, b) {
+    if (cards[a] !== cards[b]) {
+      setTimeout(() => {
+        setActiveCards([]);
+      }, 500);
+    }
+  }
+
+  function matchedPairs(c, d) {
+    if (cards[c] === cards[d]) {
+      if (foundPairs.length + 2 === cards.length) {
+        setPlaying(true);
       }
-    });
-  }
-
-  shuffleDeck() {
-    for (let i = this.cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+      setFoundPairs([...foundPairs, c, d]);
     }
   }
-}
 
-const harryPotterPexeso = new Pexeso("Harry Potter", "harryPotter", 56, 0);
-const lordOfTheRings = new Pexeso("Lord of the Rings", "lotr", 38, 1);
-const strangerThings = new Pexeso("Stranger Things", "strangerThings", 40, 2);
+  function shuffleCards(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  }
 
-// Každé nové pexeso přidej do pole pexesoDecks.
-const pexesoDecks = [harryPotterPexeso, lordOfTheRings, strangerThings];
+  function setPairsOfCards(index) {
+    setActiveCards([...activeCards, index]);
+  }
 
-function initiatePexeso(pexesoDeck) {
-  pexesoDeck.forEach(pexeso => {
-    pexeso.createCards();
-    pexeso.createCardName();
-    pexeso.shuffleDeck();
-  });
-}
+  function newPair(index) {
+    if (activeCards.length === 2) {
+      setActiveCards([index]);
+    }
+  }
 
-initiatePexeso(pexesoDecks);
+  function toggleFirstCard(index) {
+    if (activeCards.length === 0) {
+      setActiveCards([index]);
+    }
+  }
 
-export default pexesoDecks;
+  function toggleSecondCard(index) {
+    if (activeCards.length === 1) {
+      const firstIndex = activeCards[0];
+      const secondsIndex = index;
+      closeUnmatchedPairs(firstIndex, secondsIndex);
+      matchedPairs(firstIndex, secondsIndex);
+      setPairsOfCards(index);
+    }
+  }
+
+  function flipCard(index) {
+    setPlayingGame();
+    toggleFirstCard(index);
+    toggleSecondCard(index);
+    newPair(index);
+    handleClicks();
+  }
+
+  return (
+    <div className="card_container">
+      {cards.map((card, index) => {
+        const flippedFromBackToFront =
+          activeCards.indexOf(index) !== -1 || foundPairs.indexOf(index) !== -1;
+        return (
+          <div
+            key={index}
+            className={"card " + (flippedFromBackToFront && "flipped")}
+            onClick={() => flipCard(index)}
+          >
+            <div className="content">
+              <div className="front"></div>
+              <div className="back">
+                <img src={card} alt="" />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+      Clicks: {clicks} &nbsp;&nbsp;&nbsp; Found pairs:{foundPairs.length / 2}
+      <button onClick={() => shuffleCards(cards)}>PLAY AGAIN</button>
+    </div>
+  );
+};
+
+export default Pexeso;
