@@ -1,6 +1,7 @@
 import React from "react";
 import Images from "./Images";
 import "./App.css";
+import Card from "./Card";
 
 const Pexeso = () => {
   const [cards, setCards] = React.useState([...Images, ...Images]);
@@ -85,18 +86,12 @@ const Pexeso = () => {
         const flippedFromBackToFront =
           activeCards.indexOf(index) !== -1 || foundPairs.indexOf(index) !== -1;
         return (
-          <div
-            key={index}
-            className={"card " + (flippedFromBackToFront && "flipped")}
-            onClick={() => flipCard(index)}
-          >
-            <div className="content">
-              <div className="front"></div>
-              <div className="back">
-                <img src={card} alt="" />
-              </div>
-            </div>
-          </div>
+          <Card
+            flippedFromBackToFront={flippedFromBackToFront}
+            card={card}
+            index={index}
+            flipCard={flipCard}
+          />
         );
       })}
       Clicks: {clicks} &nbsp;&nbsp;&nbsp; Found pairs:{foundPairs.length / 2}
